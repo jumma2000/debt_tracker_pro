@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <div class="card shadow border-0">
+            <div class="card-header bg-info text-white py-3">
+                <h4 class="mb-0 text-center">تسجيل سداد: {{ customer.name }}</h4>
+            </div>
+            <div class="card-body p-4" dir="rtl">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-4 text-center">
+                        <label class="form-label fw-bold fs-5">أدخل المبلغ الذي دفعه العميل</label>
+                        {{ form.amount }}
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-info text-white btn-lg shadow-sm">تأكيد استلام المبلغ</button>
+                        <a href="{% url 'customer_detail' customer.pk %}" class="btn btn-light border">إلغاء</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

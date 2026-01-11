@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 no-print gap-2">
+    <h2 class="h4 mb-0 fw-bold text-dark">
+        <i class="bi bi-file-earmark-person text-primary"></i> كشف حساب: {{ customer.name }}
+    </h2>
+    <div class="w-100 w-md-auto d-flex gap-2">
+        <button onclick="window.print()" class="btn btn-dark flex-grow-1 shadow-sm">
+            <i class="bi bi-printer"></i> طباعة
+        </button>
+        <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary flex-grow-1 shadow-sm">الرجوع</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-4 mb-4">
+        <div class="card border-0 shadow-sm h-100 overflow-hidden">
+            <div class="card-header bg-dark text-white text-center py-3">ملخص الحساب</div>
+            <div class="card-body text-center d-flex flex-column justify-content-center py-4">
+                <p class="text-muted mb-2 small"><i class="bi bi-phone"></i> {{ customer.phone }}</p>
+                <h5 class="fw-light text-secondary">إجمالي المبلغ المتبقي</h5>
+                <h2 class="display-5 fw-bold text-danger my-2">{{ customer.total_balance }} <small class="fs-6 text-muted">د.ل</small></h2>
+                {% if customer.total_balance > 0 %}
+                    <span class="badge bg-danger-subtle text-danger p-2 rounded-pill mt-2">مطالب بالسداد</span>
+                {% else %}
+                    <span class="badge bg-success-subtle text-success p-2 rounded-pill mt-2">الحساب خالص</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-header bg-white border-bottom py-3">
+                <ul class="nav nav-pills nav-fill" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <button class="nav-link active fw-bold text-dark" id="debts-tab" data-bs-toggle="tab" data-bs-target="#debts" type="button">📦 المشتريات</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link fw-bold text-success" id="payments-tab" data-bs-toggle="tab" data-bs-target="#payments" type="button">💰 المدفوعات</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body p-0">
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="debts">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="ps-3">التاريخ</th>
+                                        <th>البيان</th>
+                                        <th class="text-center">المبلغ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for debt in debts %}
+                                    <tr>
+                                        <td class="ps-3 small">{{ debt.date|date:"Y-m-d" }}</td>
+                                        <td>{{ debt.description }}</td>
+                                        <td class="text-center fw-bold">{{ debt.amount }}</td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr><td colspan="3" class="text-center py-5 text-muted">لا توجد مشتريات مسجلة</td></tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="payments">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0 text-success">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="ps-3">التاريخ</th>
+                                        <th class="text-center">المبلغ المدفوع</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for payment in payments %}
+                                    <tr>
+                                        <td class="ps-3 small">{{ payment.date|date:"Y-m-d" }}</td>
+                                        <td class="text-center fw-bold">{{ payment.amount }} د.ل</td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr><td colspan="2" class="text-center py-5 text-muted">لا توجد دفعات سداد</td></tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="d-none d-print-block mt-5 pt-5 border-top">
+    <div class="row text-center">
+        <div class="col-4">
+            <h6 class="fw-bold">توقيع المستلم</h6>
+            <p class="mt-4">........................</p>
+        </div>
+        <div class="col-4">
+            <h6 class="fw-bold">ختم المحل</h6>
+            <p class="mt-4">........................</p>
+        </div>
+        <div class="col-4">
+            <h6 class="fw-bold">توقيع المحاسب</h6>
+            <p class="mt-4">........................</p>
+        </div>
+    </div>
+    <div class="text-center mt-5">
+        <h5 class="text-dark fw-bold">تطوير وبرمجة: جمعة علي ضو</h5>
+        <p class="small text-muted mb-0">هاتف: 0911313949 | واتساب: 00218911313949</p>
+        <p class="small text-muted">jumma2000@hotmail.com</p>
+    </div>
+</div>
+{% endblock %}

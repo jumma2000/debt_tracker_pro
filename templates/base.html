@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام ديون العملاء | جمعة علي ضو</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    
+    <style>
+        /* الأساسيات والتجاوب */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #f8f9fa; 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        .content-wrapper { flex: 1; padding-top: 20px; padding-bottom: 40px; }
+        .card { border-radius: 15px; border: none; transition: transform 0.2s; }
+        
+        /* تحسينات الموبايل */
+        @media (max-width: 768px) {
+            .display-4 { font-size: 1.8rem !important; }
+            .navbar-brand { font-size: 1.1rem; }
+            .container { padding-left: 15px; padding-right: 15px; }
+            .btn { width: 100%; margin-bottom: 8px; } /* أزرار عريضة في الموبايل لسهولة الضغط */
+        }
+
+        /* تنسيقات الطباعة الاحترافية */
+        @media print {
+            .no-print, nav, footer, button, .btn, .pagination, .navbar-toggler { 
+                display: none !important; 
+            }
+            body { background-color: white !important; padding: 0; margin: 0; }
+            .container { width: 100% !important; max-width: 100% !important; margin: 0; padding: 0; }
+            .card { box-shadow: none !important; border: 1px solid #ddd !important; }
+        }
+
+        footer { background-color: #212529; color: white; padding: 2rem 0; margin-top: auto; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 no-print shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{% url 'dashboard' %}">📊 نظام ديون العملاء</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto text-center text-lg-end">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">الرئيسية</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">من نحن</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">اتصل بنا</a></li>
+                    <li class="nav-item"><a class="nav-link text-warning fw-bold" href="/admin/">لوحة التحكم</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container content-wrapper">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="no-print mt-auto">
+        <div class="container">
+            <div class="row g-4 text-center text-md-end">
+                <div class="col-md-6">
+                    <h5 class="text-info fw-bold mb-3"><i class="bi bi-code-slash"></i> تطوير وبرمجة</h5>
+                    <p class="mb-0 fs-5">جمعة علي ضو</p>
+                    <small class="text-muted">متخصص في حلول البرمجيات المحاسبية والتقنية</small>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="text-info fw-bold mb-3"><i class="bi bi-telephone-outbound"></i> تواصل مباشر</h5>
+                    <p class="mb-1 d-block"><i class="bi bi-whatsapp text-success"></i> 00218911313949</p>
+                    <p class="mb-0 d-block"><i class="bi bi-envelope text-warning"></i> jumma2000@hotmail.com</p>
+                </div>
+            </div>
+            <hr class="bg-secondary my-4">
+            <div class="text-center">
+                <p class="small mb-0 text-muted">&copy; 2026 جميع الحقوق محفوظة - نظام ديون العملاء</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

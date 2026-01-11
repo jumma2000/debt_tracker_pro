@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center mt-2 mt-md-5">
+    <div class="col-md-10 col-lg-8">
+        <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+            <div class="card-header bg-dark text-white text-center py-5 position-relative">
+                <div class="position-absolute top-0 start-0 w-100 h-100 opacity-25" style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png');"></div>
+                <h2 class="fw-bold mb-0 position-relative"><i class="bi bi-info-circle-fill me-2"></i> حول النظام</h2>
+            </div>
+
+            <div class="card-body p-4 p-md-5 bg-white">
+                <div class="row align-items-center">
+                    <div class="col-md-12 text-center text-md-end mb-4 mb-md-0">
+                        <h4 class="text-primary fw-bold mb-3">نظام تتبع ديون العملاء</h4>
+                        <p class="lead text-secondary mb-4" style="line-height: 1.8;">
+                            هو حل محاسبي ذكي ومبسط، صُمم خصيصاً لمساعدة أصحاب المحلات والشركات الصغيرة في <strong>ليبيا والوطن العربي</strong> على تنظيم سجلات الديون والمدفوعات بدقة عالية، مما يضمن حفظ الحقوق وسهولة استخراج التقارير المالية والطباعة الفورية.
+                        </p>
+                        
+                        <div class="p-3 bg-light rounded-3 border-start border-primary border-4 mb-4">
+                            <p class="mb-0">تم تطوير هذا المشروع بواسطة المبرمج <strong>جمعة علي ضو</strong> كنموذج للأنظمة المحاسبية الحديثة التي تجمع بين سهولة الاستخدام وقوة الأداء.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="row text-center">
+                    <div class="col-12">
+                        <h6 class="fw-bold text-uppercase tracking-widest text-muted mb-3">التقنيات المستخدمة في التطوير</h6>
+                        <div class="d-flex flex-wrap justify-content-center gap-2">
+                            <span class="badge bg-white text-dark border shadow-sm p-2 px-3 rounded-pill">
+                                <i class="bi bi-code-square text-primary me-1"></i> Python / Django
+                            </span>
+                            <span class="badge bg-white text-dark border shadow-sm p-2 px-3 rounded-pill">
+                                <i class="bi bi-bootstrap text-purple me-1"></i> Bootstrap 5 (RTL)
+                            </span>
+                            <span class="badge bg-white text-dark border shadow-sm p-2 px-3 rounded-pill">
+                                <i class="bi bi-phone text-success me-1"></i> Responsive Design
+                            </span>
+                            <span class="badge bg-white text-dark border shadow-sm p-2 px-3 rounded-pill">
+                                <i class="bi bi-database text-info me-1"></i> SQLite / PostgreSQL
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer bg-light text-center py-3">
+                <small class="text-muted">إصدار النظام 1.0.0 - جميع الحقوق محفوظة &copy; 2026</small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
