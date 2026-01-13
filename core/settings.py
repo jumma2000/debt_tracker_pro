@@ -118,3 +118,8 @@ from django.db.backends.mysql.base import DatabaseWrapper
 DatabaseWrapper.display_name = 'mariadb'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# إجبار النظام على الذهاب لرابطنا الخاص بدلاً من الرابط الافتراضي
+LOGIN_URL = 'login' 
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = 'login'

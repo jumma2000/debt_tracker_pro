@@ -1,42 +1,41 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
 <div class="row g-3 mb-4 text-center no-print">
     <div class="col-12">
-        <div class="card bg-primary text-white shadow-sm border-0 py-4 overflow-hidden position-relative">
-            <i class="bi bi-graph-up-arrow position-absolute start-0 top-50 translate-middle-y ms-4 opacity-25 display-1"></i>
+        <div class="card bg-dark text-white shadow-sm border-0 py-4 overflow-hidden position-relative" style="border-radius: 15px;">
+            <i class="bi bi-wallet2 position-absolute start-0 top-50 translate-middle-y ms-4 opacity-25" style="font-size: 5rem;"></i>
             <div class="card-body">
-                <h5 class="fw-light mb-3">إجمالي الديون المستحقة في السوق</h5>
-                <h1 class="display-3 fw-bold">{{ total_market_debt }} <small class="fs-4">د.ل</small></h1>
+                <h5 class="fw-light mb-2 text-info">إجمالي الديون المستحقة في السوق</h5>
+                <h1 class="display-3 fw-bold text-warning">{{ total_market_debt }} <small class="fs-4">د.ل</small></h1>
             </div>
         </div>
     </div>
 </div>
 
 <div class="row mb-4 no-print">
-    <div class="col-md-6 mx-auto">
-        <form method="GET" action="{% url 'dashboard' %}" class="d-flex shadow-sm rounded-pill overflow-hidden border bg-white">
+    <div class="col-md-8 mx-auto">
+        <form method="GET" action="{% url 'dashboard' %}" class="d-flex shadow-sm rounded-pill overflow-hidden border bg-white p-1">
             <input type="text" name="search" class="form-control border-0 px-4 py-2" 
                    placeholder="ابحث باسم العميل أو رقم الهاتف..." value="{{ query }}">
-            <button class="btn btn-primary px-4" type="submit">
-                <i class="bi bi-search"></i>
+            <button class="btn btn-primary rounded-pill px-4" type="submit">
+                <i class="bi bi-search me-1"></i> بحث
             </button>
             {% if query %}
-                <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary d-flex align-items-center border-0 border-start">
-                    <i class="bi bi-x-lg"></i>
+                <a href="{% url 'dashboard' %}" class="btn btn-light rounded-pill ms-1 d-flex align-items-center">
+                    <i class="bi bi-x-circle text-danger"></i>
                 </a>
             {% endif %}
         </form>
     </div>
 </div>
 
-<div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+<div class="card shadow-sm border-0" style="border-radius: 15px;">
     <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center border-bottom">
         <h5 class="mb-0 fw-bold text-dark">
-            <i class="bi bi-people-fill text-primary me-2"></i> قائمة العملاء والحسابات
+            <i class="bi bi-people-fill text-primary me-2"></i> قائمة الحسابات والعملاء
         </h5>
-        <span class="badge bg-dark rounded-pill">{{ page_obj.paginator.count }} عميل</span>
+        <span class="badge bg-secondary rounded-pill px-3">{{ page_obj.paginator.count }} عميل</span>
     </div>
     
     <div class="card-body p-0">
@@ -60,18 +59,18 @@
                         <td class="d-none d-md-table-cell text-muted">{{ customer.phone }}</td>
                         <td>
                             {% if customer.total_balance > 0 %}
-                                <span class="badge bg-danger-subtle text-danger px-3 py-2 rounded-pill fw-bold border border-danger-subtle">
+                                <span class="badge bg-danger-subtle text-danger px-3 py-2 rounded-pill fw-bold border border-danger">
                                     {{ customer.total_balance }} د.ل
                                 </span>
                             {% else %}
-                                <span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill fw-bold border border-success-subtle">
+                                <span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill fw-bold border border-success">
                                     خالص ✅
                                 </span>
                             {% endif %}
                         </td>
                         <td class="px-4">
-                            <a href="{% url 'customer_detail' customer.pk %}" class="btn btn-sm btn-dark rounded-pill px-4 shadow-sm">
-                                <i class="bi bi-eye"></i> عرض الكشف
+                            <a href="{% url 'customer_detail' customer.pk %}" class="btn btn-sm btn-outline-dark rounded-pill px-3 shadow-sm">
+                                <i class="bi bi-file-earmark-text"></i> عرض الكشف
                             </a>
                         </td>
                     </tr>
@@ -94,7 +93,7 @@
     <ul class="pagination justify-content-center shadow-sm rounded-pill overflow-hidden border-0">
         {% if page_obj.has_previous %}
             <li class="page-item">
-                <a class="page-link text-dark border-0 py-2 px-3" href="?page=1{% if query %}&search={{ query }}{% endif %}"><i class="bi bi-chevron-double-right"></i> الأولى</a>
+                <a class="page-link text-dark border-0 py-2 px-3" href="?page=1{% if query %}&search={{ query }}{% endif %}">الأولى</a>
             </li>
             <li class="page-item">
                 <a class="page-link text-dark border-0 py-2 px-3" href="?page={{ page_obj.previous_page_number }}{% if query %}&search={{ query }}{% endif %}">السابق</a>
@@ -112,7 +111,7 @@
                 <a class="page-link text-dark border-0 py-2 px-3" href="?page={{ page_obj.next_page_number }}{% if query %}&search={{ query }}{% endif %}">التالي</a>
             </li>
             <li class="page-item">
-                <a class="page-link text-dark border-0 py-2 px-3" href="?page={{ page_obj.paginator.num_pages }}{% if query %}&search={{ query }}{% endif %}">الأخيرة <i class="bi bi-chevron-double-left"></i></a>
+                <a class="page-link text-dark border-0 py-2 px-3" href="?page={{ page_obj.paginator.num_pages }}{% if query %}&search={{ query }}{% endif %}">الأخيرة</a>
             </li>
         {% endif %}
     </ul>
