@@ -76,15 +76,8 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'debt_system_db',    # اسم قاعدة البيانات التي أنشأتها في phpMyAdmin
-        'USER': 'root',              # المستخدم الافتراضي في XAMPP
-        'PASSWORD': '',              # اتركه فارغاً كما هو افتراضي في XAMPP
-        'HOST': '127.0.0.1',         # عنوان السيرفر المحلي
-        'PORT': '3306',              # المنفذ الافتراضي لـ MySQL
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -110,14 +103,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-# تغيير لغة الموقع للعربية
-LANGUAGE_CODE = 'ar'
-
-# ضبط التوقيت (مثلاً توقيت ليبيا)
-TIME_ZONE = 'Africa/Tripoli'
-
+LANGUAGE_CODE = 'ar' # تحويل لغة النظام للعربية
+TIME_ZONE = 'Africa/Tripoli' # توقيت ليبيا
 USE_I18N = True
-USE_L10N = True
 USE_TZ = True
 
 
