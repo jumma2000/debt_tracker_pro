@@ -24,9 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_z5bfe&u_mn!-z(-^=91^%xa&m3_ms1rvi9w6wpwj$ff12rqmn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = False
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',  # أضف هذا السطر لتفعيل الفواصل والأرقام المقروءة
     'debts',
 ]
 
@@ -76,8 +76,15 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'debt_system_db2',  # التأكد من مطابقة الاسم في الصورة
+        'USER': 'root',
+        'PASSWORD': '',             # اتركها فارغة كما هو معتاد في XAMPP
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
     }
 }
 
